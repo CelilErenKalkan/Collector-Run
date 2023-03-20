@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using Extenders;
-using Game.PickerSystem;
+using Game.CollectorSystem;
 using UnityEngine;
 using static Extenders.Actions;
 
@@ -12,7 +12,7 @@ namespace Game.PlatformSystem.PlatformTypes
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.TryGetComponent(out PickerPhysicsController picker)) return;
+            if (!other.TryGetComponent(out CollectorPhysicsController collector)) return;
             
             StartCoroutine(Timer());
             IEnumerator Timer()

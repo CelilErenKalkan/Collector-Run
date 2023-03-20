@@ -1,4 +1,4 @@
-﻿using Game.PickerSystem;
+﻿using Game.CollectorSystem;
 using Managers.Level;
 using UnityEngine;
 using static Extenders.Actions;
@@ -9,7 +9,7 @@ namespace Managers
     {
         private LevelManager _levelManager;
         private AssetManager _assetManager;
-        [SerializeField] private Picker picker;
+        [SerializeField] private Collector collector;
         
         private void Awake()
         {
@@ -22,8 +22,8 @@ namespace Managers
 
         private void OnLevelStart()
         {
-            picker.gameObject.SetActive(true);
-            picker.Initialize();
+            collector.gameObject.SetActive(true);
+            collector.Initialize();
         }
 
         private void OnEnable()

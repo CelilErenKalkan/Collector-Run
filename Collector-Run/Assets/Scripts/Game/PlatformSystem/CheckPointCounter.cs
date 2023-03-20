@@ -44,7 +44,7 @@ namespace Game.PlatformSystem
             transform.position = _firstPos;
             textMesh.enabled = true;
             textMesh.text = Mathf.RoundToInt(_counter) + "/" + _targetCounter;
-            _meshRenderer.material = _assetManager.pickerMaterial;
+            _meshRenderer.material = _assetManager.collectorMaterial;
         }
 
         private void OnEnable()

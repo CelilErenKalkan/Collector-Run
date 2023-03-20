@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ed98008719bd6489a55eed0ce63bec, type: 3}
+  m_Name: Level_02
+  m_EditorClassIdentifier: 
+  platformDatas:
+  - position: {x: 0, y: 0, z: 0}
+    platformType: 0
+    checkPointCount: 0
+  - position: {x: 0, y: 0, z: 60}
+    platformType: 0
+    checkPointCount: 0
+  - position: {x: 0, y: 0, z: 69}
+    platformType: 0
+    checkPointCount: 0
+  - position: {x: 0, y: 0, z: 129}
+    platformType: 1
+    checkPointCount: 5
+  - position: {x: 0, y: 0, z: 139}
+    platformType: 2
+    checkPointCount: 0
+  objectGroupDatas:
+  - position: {x: -1.5, y: 0, z: 15.5}
+    objectGroupType: 0
+  - position: {x: -1.5, y: 0, z: 19.5}
+    objectGroupType: 1
+  - position: {x: -6.5, y: 0, z: 29.5}
+    objectGroupType: 1
+  - position: {x: -1.5, y: 0, z: 40.5}
+    objectGroupType: 1
+  - position: {x: -6.5, y: 0, z: 75}
+    objectGroupType: 2
+  - position: {x: -1.5, y: 0, z: 99.5}
+    objectGroupType: 0
+  - position: {x: -2, y: 0, z: 107}
+    objectGroupType: 1
+  - position: {x: -7, y: 0, z: 114.5}
+    objectGroupType: 1

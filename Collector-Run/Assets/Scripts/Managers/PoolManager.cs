@@ -13,8 +13,7 @@ namespace Managers
 
         public Platform GetAvailablePlatform(PlatformType platformType)
         {
-            if(_platforms == null)
-                _platforms = new List<Platform>();
+            _platforms ??= new List<Platform>();
             
             var platform = _platforms?.FirstOrDefault(x => !x.isActive && x.PlatformType == platformType);
             if (platform == null)
@@ -31,8 +30,7 @@ namespace Managers
 
         public ObjectGroup GetAvailableObjectGroup(ObjectGroupType objectGroupType)
         {
-            if(_objectGroups == null)
-                _objectGroups = new List<ObjectGroup>();
+            _objectGroups ??= new List<ObjectGroup>();
 
             var objectGroup = _objectGroups?.FirstOrDefault(x => !x.isActive && x.objectGroupType == objectGroupType);
             if (objectGroup == null)

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using DG.Tweening;
 using Extenders;
-using Game.PickerSystem;
+using Game.CollectorSystem;
 using UnityEngine;
 using static Extenders.Actions;
 
@@ -24,7 +24,7 @@ namespace Game.PlatformSystem.PlatformTypes
             checkPointCounter.Initialize(_target);
         }
 
-        private void CheckContinue(Picker picker)
+        private void CheckContinue(Collector collector)
         {
             var counter = checkPointCounter.GetCounter();
             if (counter >= _target)
@@ -36,7 +36,7 @@ namespace Game.PlatformSystem.PlatformTypes
                     CHECKPOINT?.Invoke();
                 });
                 
-                picker.OnPointGained?.Invoke(counter * 5);
+                collector.OnPointGained?.Invoke(counter * 5);
             }
             else
             {
@@ -50,7 +50,7 @@ namespace Game.PlatformSystem.PlatformTypes
             IEnumerator Timer()
             {
                 yield return 2.0f.GetWait();
-                if (picker.TryGetComponent(out Picker pickerBase))
+                if (picker.TryGetComponent(out Collector pickerBase))
                     CheckContinue(pickerBase);
             }
         }
@@ -75,9 +75,9 @@ namespace Game.PlatformSystem.PlatformTypes
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.TryGetComponent(out PickerPhysicsController pickerPhysicsController)) return;
-            pickerPhysicsController.PushCollectables();
-            CheckContinueInTime(pickerPhysicsController);
+            if (!other.TryGetComponent(out CollectorPhysicsController collectorPhysicsController)) return;
+            collectorPhysicsController.PushCollectables();
+            CheckContinueInTime(collectorPhysicsController);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Extenders;
-using Game.PickerSystem;
+using Game.CollectorSystem;
 using Game.PlatformSystem.PlatformTypes;
 using UnityEngine;
 using static Extenders.Actions;
@@ -11,8 +11,9 @@ namespace Managers.Level
     public class LevelManager : MonoSingleton<LevelManager>
     {
         private AssetManager _assetManager;
+        private UIManager _uiManager;
         private PoolManager _pool;
-        [SerializeField] private Picker picker;
+        [SerializeField] private Collector collector;
         private List<Platform> _platforms;
         private Vector3 _pickerStartPosition;
         [HideInInspector] public int levelIndex;
@@ -20,12 +21,13 @@ namespace Managers.Level
         public void LoadLevel()
         {
             _assetManager = AssetManager.Instance;
+            _uiManager = UIManager.Instance;
             _pool = PoolManager.Instance;
             _pickerStartPosition = new Vector3(0,0.6f,2.5f);
             levelIndex = PlayerPrefs.GetInt("Level", 1);
         }
 
-        public void GenerateLevel()
+        private void GenerateLevel()
         {
             var levelData = _assetManager.LoadLevel(levelIndex);
             var platformList = levelData.platformDatas;
@@ -46,7 +48,8 @@ namespace Managers.Level
                 objectGroup.transform.position = objectGroupData.position;
             }
             
-            picker.transform.position = _pickerStartPosition;
+            collector.transform.position = _pickerStartPosition;
+            _uiManager.SetLevelText();
         }
 
         private void GenerateLevelInTime()

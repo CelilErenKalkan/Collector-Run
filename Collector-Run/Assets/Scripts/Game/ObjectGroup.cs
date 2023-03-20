@@ -16,19 +16,19 @@ namespace Game
         [HideInInspector] public bool isActive;
         public ObjectGroupType objectGroupType;
 
-        private List<Collectable> _collectableBases;
+        private List<Collectable> _collectables;
         private List<Vector3> _positions;
         private Vector3 _groupPosition;
         
         public void Initialize()
         {
-            _collectableBases = GetComponentsInChildren<Collectable>(true).ToList();
+            _collectables = GetComponentsInChildren<Collectable>(true).ToList();
             _groupPosition = transform.position;
-            _positions = new List<Vector3>(_collectableBases.Count);
+            _positions = new List<Vector3>(_collectables.Count);
 
-            for (var i = 0; i < _collectableBases.Count; i++)
+            for (var i = 0; i < _collectables.Count; i++)
             {
-                _positions.Add(_collectableBases[i].transform.localPosition);
+                _positions.Add(_collectables[i].transform.localPosition);
             }
 
             isActive = false;
@@ -41,7 +41,7 @@ namespace Game
             
             transform.position = _groupPosition;
 
-            foreach (var collectable in _collectableBases)
+            foreach (var collectable in _collectables)
             {
                 collectable.transform.localPosition = _positions[collectable.transform.GetSiblingIndex()];
                 collectable.Activate();
@@ -59,9 +59,9 @@ namespace Game
 
         private void PhysicsActivation(bool state)
         {
-            foreach (var collectableBase in _collectableBases)
+            foreach (var collectable in _collectables)
             {
-                if (collectableBase.TryGetComponent(out Rigidbody rb)) rb.isKinematic = !state;
+                if (collectable.TryGetComponent(out Rigidbody rb)) rb.isKinematic = !state;
             }
         }
     }

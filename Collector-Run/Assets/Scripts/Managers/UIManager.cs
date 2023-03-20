@@ -15,10 +15,14 @@ namespace Managers
             if (TryGetComponent<CanvasHelper>(out var helper)) _canvasHelper = helper;
         }
 
+        public void SetLevelText()
+        {
+            _canvasHelper.SetLevelText(_levelManager.levelIndex);
+        }
+
         public void PlayButton()
         {
             _canvasHelper.SetPanel(CanvasPanel.Start, false);
-            _canvasHelper.SetLevelText(_levelManager.levelIndex);
             LEVEL_START?.Invoke();
         }
 
