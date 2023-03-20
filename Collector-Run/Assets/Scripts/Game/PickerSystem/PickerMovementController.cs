@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using static Extenders.Actions;
 
 namespace Game.PickerSystem
 {
@@ -18,7 +19,6 @@ namespace Game.PickerSystem
             _pickerCamera = pickerCamera;
             _forwardSpeed = 5f;
             _xSpeed = 10f;
-            Activate();
         }
 
         public void Activate()
@@ -30,11 +30,27 @@ namespace Game.PickerSystem
         {
             _active = false;
         }
+
+        private void OnLevelEnd(bool isSuccess)
+        {
+            Deactivate();
+        }
+        
+        private void OnEnable()
+        {
+            LEVEL_START += Activate;
+            LEVEL_END += OnLevelEnd;
+        }
+        
+        private void OnDisable()
+        {
+            LEVEL_START -= Activate;
+            LEVEL_END -= OnLevelEnd;
+        }
         
         private void FixedUpdate()
         {
-            if(!_active)
-                return;
+            if(!_active) return;
             
             if (Input.GetMouseButton(0))
             {
@@ -46,9 +62,9 @@ namespace Game.PickerSystem
                 direction = _mousePos.x > transform.position.x ? direction : -direction;
                 
                 if(Math.Abs(_mousePos.x - transform.position.x) > 0.5f)
-                    transform.Translate(Time.deltaTime * direction,0,0);
+                    transform.Translate(Time.fixedDeltaTime * direction,0,0);
             }
-            transform.Translate(0,0,Time.deltaTime * _forwardSpeed);
+            transform.Translate(0,0,Time.fixedDeltaTime * _forwardSpeed);
         }
     }
 }
