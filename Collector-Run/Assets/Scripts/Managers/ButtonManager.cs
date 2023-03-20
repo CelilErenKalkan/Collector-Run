@@ -5,9 +5,7 @@ namespace Managers
 {
     public class ButtonManager : MonoBehaviour
     {
-        [Header("PANELS:")]
-        [SerializeField] private Button playButton;
-        [SerializeField] private Button nextLevelButton, retryButton;
+        [SerializeField] private Button playButton, nextLevelButton, retryButton;
 
         private UIManager _uiManager;
 

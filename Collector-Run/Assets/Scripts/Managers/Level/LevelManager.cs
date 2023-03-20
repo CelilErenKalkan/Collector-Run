@@ -54,7 +54,7 @@ namespace Managers.Level
             StartCoroutine(Timer());
             IEnumerator Timer()
             {
-                yield return 0.5f.GetWait();
+                yield return 0.1f.GetWait();
                 _pool.DeactivateWholePool();
                 levelIndex++;
                 PlayerPrefs.SetInt("Level", levelIndex);

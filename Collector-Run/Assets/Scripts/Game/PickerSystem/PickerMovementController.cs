@@ -17,8 +17,9 @@ namespace Game.PickerSystem
         public void Initialize(Camera pickerCamera)
         {
             _pickerCamera = pickerCamera;
-            _forwardSpeed = 5f;
+            _forwardSpeed = 5;
             _xSpeed = 10f;
+            Activate();
         }
 
         public void Activate()
@@ -31,20 +32,27 @@ namespace Game.PickerSystem
             _active = false;
         }
 
+        private void OnNewLevel()
+        {
+            _forwardSpeed = 5;
+        }
+        
         private void OnLevelEnd(bool isSuccess)
         {
-            Deactivate();
+            _forwardSpeed = 0;
         }
         
         private void OnEnable()
         {
-            LEVEL_START += Activate;
+            SUCCESS += OnNewLevel;
+            FAIL += OnNewLevel;
             LEVEL_END += OnLevelEnd;
         }
         
         private void OnDisable()
         {
-            LEVEL_START -= Activate;
+            SUCCESS -= OnNewLevel;
+            FAIL -= OnNewLevel;
             LEVEL_END -= OnLevelEnd;
         }
         
@@ -64,6 +72,7 @@ namespace Game.PickerSystem
                 if(Math.Abs(_mousePos.x - transform.position.x) > 0.5f)
                     transform.Translate(Time.fixedDeltaTime * direction,0,0);
             }
+            
             transform.Translate(0,0,Time.fixedDeltaTime * _forwardSpeed);
         }
     }
