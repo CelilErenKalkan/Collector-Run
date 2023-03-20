@@ -374,8 +374,6 @@
 "Assets/Scripts/Game/PlatformSystem/PlatformTypes/CheckPoint.cs"
 "Assets/Scripts/Game/PlatformSystem/PlatformTypes/FinalPlatform.cs"
 "Assets/Scripts/Game/PlatformSystem/PlatformTypes/NormalPlatform.cs"
-"Assets/Scripts/GameEvents/GameEvent.cs"
-"Assets/Scripts/GameEvents/GameEventBus.cs"
 "Assets/Scripts/Managers/AssetManager.cs"
 "Assets/Scripts/Managers/GameManager.cs"
 "Assets/Scripts/Managers/Level/LevelData.cs"

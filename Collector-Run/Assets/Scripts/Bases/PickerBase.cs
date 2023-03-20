@@ -1,8 +1,8 @@
 ﻿using System;
 using Game.PickerSystem;
-using GameEvents;
 using Managers;
 using UnityEngine;
+using static Extenders.Actions;
 
 namespace Bases
 {
@@ -30,9 +30,23 @@ namespace Bases
             
             _pickerMovementController.Initialize(_pickerCamera);
             _pickerPhysicsController.Initialize(_pickerPhysicsManager,_pickerMovementController);
-            
-            GameEventBus.SubscribeEvent(GameEventType.CHECKPOINT, ()=> _pickerMovementController.Activate());
-            GameEventBus.SubscribeEvent(GameEventType.FAIL, ()=>_pickerMovementController.Activate());
+        }
+
+        private void ActivatePickerMovement()
+        {
+            _pickerMovementController.Activate();
+        }
+
+        private void OnEnable()
+        {
+            CheckPoint += ActivatePickerMovement;
+            Fail += ActivatePickerMovement;
+        }
+        
+        private void OnDisable()
+        {
+            CheckPoint -= ActivatePickerMovement;
+            Fail -= ActivatePickerMovement;
         }
 
         private void LateUpdate()

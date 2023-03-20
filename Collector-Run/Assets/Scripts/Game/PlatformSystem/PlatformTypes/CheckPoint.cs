@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Bases;
 using DG.Tweening;
 using Extenders;
 using Game.PickerSystem;
-using GameEvents;
 using UnityEngine;
+using static Extenders.Actions;
 
 namespace Game.PlatformSystem
 {
@@ -25,10 +26,6 @@ namespace Game.PlatformSystem
             _checkPointCounterPlatform = GetComponentInChildren<CheckPointCounterPlatform>(true);            
             _gate1 = transform.Find("Gate1");
             _gate2 = transform.Find("Gate2");
-            
-            GameEventBus.SubscribeEvent(GameEventType.SUCCESS,Reset);
-            GameEventBus.SubscribeEvent(GameEventType.FAIL,Reset);
-
         }
 
         public void SetTarget(int aim)
@@ -42,17 +39,17 @@ namespace Game.PlatformSystem
             var counter = _checkPointCounterPlatform.GetCounter();
             if (counter >= _target)
             {
-                _checkPointCounterPlatform.SuccesfulAction();
+                _checkPointCounterPlatform.SuccessfulAction();
                 _gate1.transform.DORotate(new Vector3(-60,90,90), 1f);
                 _gate2.transform.DORotate(new Vector3(60,90,90), 1f).OnComplete(()=>
                 {
-                    GameEventBus.InvokeEvent(GameEventType.CHECKPOINT);
+                    Actions.CheckPoint?.Invoke();
                 });
                 picker.OnPointGained?.Invoke(counter * 5);
             }
             else
             {
-                GameEventBus.InvokeEvent(GameEventType.FAIL);
+                Fail?.Invoke();
             }
         }
 
@@ -72,7 +69,19 @@ namespace Game.PlatformSystem
             _gate1.transform.eulerAngles = new Vector3(0,90,90);
             _gate2.transform.eulerAngles = new Vector3(0,90,90);
         }
+
+        private void OnEnable()
+        {
+            Success += Reset;
+            Fail += Reset;
+        }
         
+        private void OnDisable()
+        {
+            Success -= Reset;
+            Fail -= Reset;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (!other.TryGetComponent(out PickerPhysicsController pickerPhysicsController)) return;

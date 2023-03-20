@@ -2,8 +2,8 @@
 using Bases;
 using Extenders;
 using Game.PickerSystem;
-using GameEvents;
 using UnityEngine;
+using static Extenders.Actions;
 
 namespace Game.PlatformSystem.PlatformTypes
 {
@@ -20,7 +20,7 @@ namespace Game.PlatformSystem.PlatformTypes
             IEnumerator Timer()
             {
                 yield return 2.0f.GetWait();
-                GameEventBus.InvokeEvent(GameEventType.SUCCESS);
+                Success?.Invoke();
             }
         }
     }

@@ -1,9 +1,9 @@
 ﻿using Bases;
 using DG.Tweening;
-using GameEvents;
 using Managers;
 using TMPro;
 using UnityEngine;
+using static Extenders.Actions;
 
 namespace Game.PlatformSystem
 {
@@ -22,14 +22,10 @@ namespace Game.PlatformSystem
             _textMesh = GetComponentInChildren<TextMeshPro>(true);
             _meshRenderer = GetComponent<MeshRenderer>();
             _textMesh.text = Mathf.RoundToInt(_counter) +"/" + _targetCounter;
-            _firstPos = new Vector3(transform.position.x,-3.43f,transform.position.z);
-            
-            GameEventBus.SubscribeEvent(GameEventType.SUCCESS, Reset);
-            GameEventBus.SubscribeEvent(GameEventType.FAIL, Reset);
-
+            _firstPos = new Vector3(transform.position.x,-3.43f, transform.position.z);
         }
 
-        public void SuccesfulAction()
+        public void SuccessfulAction()
         {
             transform.DOMoveY(0, 1f);
             _textMesh.enabled = false;
@@ -50,7 +46,19 @@ namespace Game.PlatformSystem
             _textMesh.text = Mathf.RoundToInt(_counter) +"/" + _targetCounter;
             _meshRenderer.material = AssetManager.Instance.pickerMaterial;
         }
+
+        private void OnEnable()
+        {
+            Success += Reset;
+            Fail += Reset;
+        }
         
+        private void OnDisable()
+        {
+            Success -= Reset;
+            Fail -= Reset;
+        }
+
         private void OnCollisionEnter(Collision other)
         {
             var picker = other.gameObject.GetComponent<CollectableBase>();
