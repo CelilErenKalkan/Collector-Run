@@ -16,8 +16,8 @@ namespace Managers.Level
     [Serializable]
     public class PlatformData
     {
-        public Vector3 position;
         public PlatformType platformType;
+        public Vector3 position;
         [Tooltip("non Checkpoint platforms' checkPointCount will be ignored.")]
             public int checkPointCount;
     }
@@ -25,7 +25,7 @@ namespace Managers.Level
     [Serializable]
     public class ObjectGroupData
     {
-        public Vector3 position;
         public ObjectGroupType objectGroupType;
+        public Vector3 position;
     }
 }
