@@ -1,4 +1,4 @@
-﻿using Bases;
+﻿using Game.PickerSystem;
 using Managers.Level;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ namespace Managers
     {
         private LevelManager _levelManager;
         private AssetManager _assetManager;
-        [SerializeField] private PickerBase pickerBase;
+        [SerializeField] private Picker picker;
         
         private void Awake()
         {
@@ -17,7 +17,7 @@ namespace Managers
 
             _assetManager.LoadAssets();
             _levelManager.LoadLevel();
-            pickerBase.Initialize();
+            picker.Initialize();
         }
 
         private void Start()

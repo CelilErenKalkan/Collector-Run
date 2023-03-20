@@ -1,65 +1,66 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bases;
 using Extenders;
+using Game;
+using Game.PlatformSystem.PlatformTypes;
 
 namespace Managers
 {
     public class PoolManager : MonoSingleton<PoolManager>
     {
-        private List<PlatformBase> _platformBases;
-        private List<BallPackBase> _ballPackBases;
+        private List<Platform> _platforms;
+        private List<ObjectGroup> _objectGroups;
 
-        public PlatformBase GetAvailablePlatform(PlatformType platformType)
+        public Platform GetAvailablePlatform(PlatformType platformType)
         {
-            if(_platformBases == null)
-                _platformBases = new List<PlatformBase>();
+            if(_platforms == null)
+                _platforms = new List<Platform>();
             
-            var platform = _platformBases?.FirstOrDefault(x => !x.isActive && x.PlatformType == platformType);
+            var platform = _platforms?.FirstOrDefault(x => !x.isActive && x.PlatformType == platformType);
             if (platform == null)
             {
                 platform = AssetManager.Instance.GetPlatform(platformType);
                 platform = Instantiate(platform, transform);
                 platform.Initialize();
-                _platformBases?.Add(platform);
+                _platforms?.Add(platform);
             }
             
             platform.Activate();
             return platform;
         }
 
-        public BallPackBase GetAvailableBallPack(BallPackType ballPackType)
+        public ObjectGroup GetAvailableObjectGroup(ObjectGroupType objectGroupType)
         {
-            if(_ballPackBases == null)
-                _ballPackBases = new List<BallPackBase>();
+            if(_objectGroups == null)
+                _objectGroups = new List<ObjectGroup>();
 
-            var ball = _ballPackBases?.FirstOrDefault(x => !x.isActive && x.ballPackType == ballPackType);
-            if (ball == null)
+            var objectGroup = _objectGroups?.FirstOrDefault(x => !x.isActive && x.objectGroupType == objectGroupType);
+            if (objectGroup == null)
             {
-                ball = AssetManager.Instance.GetBallPack(ballPackType);
-                ball = Instantiate(ball, transform);
-                ball.Initialize();
-                _ballPackBases?.Add(ball);
+                objectGroup = AssetManager.Instance.GetObjectGroup(objectGroupType);
+                objectGroup = Instantiate(objectGroup, transform);
+                objectGroup.Initialize();
+                _objectGroups?.Add(objectGroup);
             }
             
-            ball.Activate();
-            return ball;
+            objectGroup.Activate();
+            return objectGroup;
         }
         
 
         public void DeactivateWholePool()
         {
-            if(_platformBases.Count <= 0)
+            if(_platforms.Count <= 0)
                 return;
             
-            foreach (var platform in _platformBases)
+            foreach (var platform in _platforms)
             {
                 platform.Deactivate();
             }
 
-            foreach (var ball in _ballPackBases)
+            foreach (var objectGroup in _objectGroups)
             {
-                ball.Deactivate();
+                objectGroup.Deactivate();
             }
         }
     }

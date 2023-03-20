@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  ballPackType: 2
+  objectGroupType: 2
 --- !u!1001 &1489209686141343140
 PrefabInstance:
   m_ObjectHideFlags: 0

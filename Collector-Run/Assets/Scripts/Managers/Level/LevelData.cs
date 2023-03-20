@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bases;
+using Game;
+using Game.PlatformSystem.PlatformTypes;
 using UnityEngine;
 
 namespace Managers.Level
@@ -9,22 +10,22 @@ namespace Managers.Level
     public class LevelData : ScriptableObject
     {
         public List<PlatformData> platformDatas;
-        public List<BallPackData> ballPackDatas;
+        public List<ObjectGroupData> objectGroupDatas;
     }
     
     [Serializable]
     public class PlatformData
     {
-        // Platforms that are not Checkpoint type's checkpoint count will be ignored.
         public Vector3 position;
         public PlatformType platformType;
-        public int checkPointCount;
+        [Tooltip("non Checkpoint platforms' checkPointCount will be ignored.")]
+            public int checkPointCount;
     }
 
     [Serializable]
-    public class BallPackData
+    public class ObjectGroupData
     {
         public Vector3 position;
-        public BallPackType ballPackType;
+        public ObjectGroupType objectGroupType;
     }
 }

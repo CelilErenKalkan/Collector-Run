@@ -1,8 +1,6 @@
-﻿using Bases;
-
-namespace Game.PlatformSystem.PlatformTypes
+﻿namespace Game.PlatformSystem.PlatformTypes
 {
-    public class NormalPlatform : PlatformBase
+    public class NormalPlatform : Platform
     {
         public override PlatformType PlatformType => PlatformType.NORMAL;
     }

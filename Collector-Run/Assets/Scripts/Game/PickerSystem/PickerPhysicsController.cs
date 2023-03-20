@@ -1,5 +1,4 @@
-﻿using Bases;
-using Managers;
+﻿using Managers;
 using UnityEngine;
 
 namespace Game.PickerSystem
@@ -26,20 +25,14 @@ namespace Game.PickerSystem
         
         private void OnTriggerEnter(Collider other)
         {
-            var collectable = other.GetComponent<CollectableBase>();
-            if (collectable != null)
-            {
-                _pickerPhysicsManager.AddCollectable(collectable);
-            }
+            if (!other.TryGetComponent(out Collectable collectable)) return;
+            _pickerPhysicsManager.AddCollectable(collectable);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            var collectable = other.GetComponent<CollectableBase>();
-            if (collectable != null)
-            {
-                _pickerPhysicsManager.RemoveCollectable(collectable);
-            }
+            if (!other.TryGetComponent(out Collectable collectable)) return;
+            _pickerPhysicsManager.RemoveCollectable(collectable);
         }
     }
 }

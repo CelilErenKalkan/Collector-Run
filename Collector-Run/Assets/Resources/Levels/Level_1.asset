@@ -28,20 +28,20 @@ MonoBehaviour:
   - position: {x: 0, y: 0, z: 139}
     platformType: 2
     checkPointCount: 0
-  ballPackDatas:
-  - position: {x: -1.5, y: 0, z: 15.46}
-    ballPackType: 0
-  - position: {x: -1.7, y: 0, z: 19.4}
-    ballPackType: 1
-  - position: {x: -6.4, y: 0, z: 29.7}
-    ballPackType: 1
-  - position: {x: -1.5, y: 0, z: 40.4}
-    ballPackType: 1
-  - position: {x: -1.6, y: 0, z: 99.5}
-    ballPackType: 0
-  - position: {x: -2, y: 0, z: 106.9}
-    ballPackType: 1
-  - position: {x: -7, y: 0, z: 114.8}
-    ballPackType: 1
-  - position: {x: -6.77, y: 0, z: 75.23}
-    ballPackType: 2
+  objectGroupDatas:
+  - position: {x: -1.5, y: 0, z: 15.5}
+    objectGroupType: 0
+  - position: {x: -1.5, y: 0, z: 19.5}
+    objectGroupType: 1
+  - position: {x: -6.5, y: 0, z: 29.5}
+    objectGroupType: 1
+  - position: {x: -1.5, y: 0, z: 40.5}
+    objectGroupType: 1
+  - position: {x: -6.5, y: 0, z: 75}
+    objectGroupType: 2
+  - position: {x: -1.5, y: 0, z: 99.5}
+    objectGroupType: 0
+  - position: {x: -2, y: 0, z: 107}
+    objectGroupType: 1
+  - position: {x: -7, y: 0, z: 114.5}
+    objectGroupType: 1

@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36afd64404785844959bb1fa58cb88b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMesh: {fileID: 886141585177345485}
 --- !u!1 &886141585156689773
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,6 +635,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
+  checkPointCounter: {fileID: 3445654335011924853}
+  gate1: {fileID: 886141584792627081}
+  gate2: {fileID: 886141585728670960}
 --- !u!1 &886141585445163798
 GameObject:
   m_ObjectHideFlags: 0

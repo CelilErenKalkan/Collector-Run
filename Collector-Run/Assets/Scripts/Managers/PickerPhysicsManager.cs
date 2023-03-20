@@ -1,28 +1,28 @@
 ﻿using System.Collections.Generic;
-using Bases;
+using Game;
 
 namespace Managers
 {
     public class PickerPhysicsManager
     {
-        private List<CollectableBase> _collectables;
+        private readonly List<Collectable> _collectables;
 
         public PickerPhysicsManager()
         {
-            _collectables = new List<CollectableBase>();
+            _collectables = new List<Collectable>();
         }
 
-        public void AddCollectable(CollectableBase collectableBase)
+        public void AddCollectable(Collectable collectable)
         {
-            _collectables.Add(collectableBase);
+            _collectables.Add(collectable);
         }
 
-        public void RemoveCollectable(CollectableBase collectableBase)
+        public void RemoveCollectable(Collectable collectable)
         {
-            _collectables.Remove(collectableBase);
+            _collectables.Remove(collectable);
         }
 
-        public List<CollectableBase> GetCollectables()
+        public List<Collectable> GetCollectables()
         {
             return _collectables;
         }

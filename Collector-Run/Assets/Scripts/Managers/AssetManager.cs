@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bases;
 using Extenders;
+using Game;
+using Game.PlatformSystem.PlatformTypes;
 using Managers.Level;
 using UnityEngine;
 
@@ -14,29 +15,29 @@ namespace Managers
         private const string PLATFORM_PATH = "Platforms";
 
         private List<LevelData> _levelList;
-        private List<PlatformBase> _platformBases;
-        private List<BallPackBase> _ballPackBases;
+        private List<Platform> _platforms;
+        private List<ObjectGroup> _objectGroups;
 
         public Material groundMaterial;
         public Material pickerMaterial;
 
-        public bool IsLevelIndexExceededLevelPrefabs(int levelIndex) => levelIndex >= _levelList.Count;
+        private bool IsLevelIndexExceededLevelPrefabs(int levelIndex) => levelIndex >= _levelList.Count;
         
         public void LoadAssets()
         {
             _levelList = Resources.LoadAll<LevelData>(LEVEL_PATH).ToList();
-            _platformBases = Resources.LoadAll<PlatformBase>(PLATFORM_PATH).ToList();
-            _ballPackBases = Resources.LoadAll<BallPackBase>(BALLPACK_PATH).ToList();
+            _platforms = Resources.LoadAll<Platform>(PLATFORM_PATH).ToList();
+            _objectGroups = Resources.LoadAll<ObjectGroup>(BALLPACK_PATH).ToList();
         }
 
-        public PlatformBase GetPlatform(PlatformType platformType)
+        public Platform GetPlatform(PlatformType platformType)
         {
-            return _platformBases?.FirstOrDefault(x => x.PlatformType == platformType);
+            return _platforms?.FirstOrDefault(x => x.PlatformType == platformType);
         }
 
-        public BallPackBase GetBallPack(BallPackType ballPackType)
+        public ObjectGroup GetObjectGroup(ObjectGroupType objectGroupType)
         {
-            return _ballPackBases?.FirstOrDefault(x => x.ballPackType == ballPackType);
+            return _objectGroups?.FirstOrDefault(x => x.objectGroupType == objectGroupType);
         }
         
         public LevelData LoadLevel(int levelIndex)

@@ -354,7 +354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7090632991329436156, guid: af40e15fd6fcc5e4ba93d989bb94d8b0, type: 3}
       propertyPath: m_Name
-      value: PickerBase
+      value: Picker
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af40e15fd6fcc5e4ba93d989bb94d8b0, type: 3}
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52c4af88910b5d42ac86d629d2dbf47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickerBase: {fileID: 1105290055}
+  picker: {fileID: 1105290055}
 --- !u!114 &1740957646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a282f2ec7c3aa8b4db4452bd6a140f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickerBase: {fileID: 1105290055}
+  picker: {fileID: 1105290055}
 --- !u!114 &1740957648
 MonoBehaviour:
   m_ObjectHideFlags: 0
