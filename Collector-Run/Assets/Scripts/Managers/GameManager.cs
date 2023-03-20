@@ -1,6 +1,7 @@
 ﻿using Game.PickerSystem;
 using Managers.Level;
 using UnityEngine;
+using static Extenders.Actions;
 
 namespace Managers
 {
@@ -17,12 +18,22 @@ namespace Managers
 
             _assetManager.LoadAssets();
             _levelManager.LoadLevel();
+        }
+
+        private void OnLevelStart()
+        {
+            picker.gameObject.SetActive(true);
             picker.Initialize();
         }
 
-        private void Start()
+        private void OnEnable()
         {
-            _levelManager.GenerateLevel();
+            LEVEL_START += OnLevelStart;
+        }
+        
+        private void OnDisable()
+        {
+            LEVEL_START -= OnLevelStart;
         }
     }
 }

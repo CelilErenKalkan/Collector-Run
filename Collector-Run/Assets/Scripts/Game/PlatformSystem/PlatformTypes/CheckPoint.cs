@@ -40,7 +40,7 @@ namespace Game.PlatformSystem.PlatformTypes
             }
             else
             {
-                FAIL?.Invoke();
+                LEVEL_END?.Invoke(false);
             }
         }
 

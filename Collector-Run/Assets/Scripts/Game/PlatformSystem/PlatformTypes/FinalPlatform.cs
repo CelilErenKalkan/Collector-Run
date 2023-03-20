@@ -18,7 +18,7 @@ namespace Game.PlatformSystem.PlatformTypes
             IEnumerator Timer()
             {
                 yield return 2.0f.GetWait();
-                SUCCESS?.Invoke();
+                LEVEL_END?.Invoke(true);
             }
         }
     }

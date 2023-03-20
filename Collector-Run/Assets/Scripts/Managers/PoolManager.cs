@@ -50,7 +50,7 @@ namespace Managers
 
         public void DeactivateWholePool()
         {
-            if(_platforms.Count <= 0)
+            if(_platforms is not { Count: > 0 })
                 return;
             
             foreach (var platform in _platforms)

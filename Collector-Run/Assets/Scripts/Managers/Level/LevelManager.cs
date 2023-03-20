@@ -15,19 +15,19 @@ namespace Managers.Level
         [SerializeField] private Picker picker;
         private List<Platform> _platforms;
         private Vector3 _pickerStartPosition;
-        private int _levelIndex;
+        [HideInInspector] public int levelIndex;
 
         public void LoadLevel()
         {
             _assetManager = AssetManager.Instance;
             _pool = PoolManager.Instance;
             _pickerStartPosition = new Vector3(0,0.6f,2.5f);
-            _levelIndex = PlayerPrefs.GetInt("Level", 1);
+            levelIndex = PlayerPrefs.GetInt("Level", 1);
         }
 
         public void GenerateLevel()
         {
-            var levelData = _assetManager.LoadLevel(_levelIndex);
+            var levelData = _assetManager.LoadLevel(levelIndex);
             var platformList = levelData.platformDatas;
             
             foreach (var platformData in platformList)
@@ -54,15 +54,15 @@ namespace Managers.Level
             StartCoroutine(Timer());
             IEnumerator Timer()
             {
-                yield return 2.0f.GetWait();
+                yield return 0.5f.GetWait();
                 _pool.DeactivateWholePool();
-                _levelIndex++;
-                PlayerPrefs.SetInt("Level", _levelIndex);
+                levelIndex++;
+                PlayerPrefs.SetInt("Level", levelIndex);
                 GenerateLevel();
             }
         }
 
-        private void RestartLevel()
+        private void StartLevel()
         {
             _pool.DeactivateWholePool();
             GenerateLevel();
@@ -70,14 +70,16 @@ namespace Managers.Level
 
         private void OnEnable()
         {
+            LEVEL_START += StartLevel;
             SUCCESS += GenerateLevelInTime;
-            FAIL += RestartLevel;
+            FAIL += StartLevel;
         }
         
         private void OnDisable()
         {
+            LEVEL_START -= StartLevel;
             SUCCESS -= GenerateLevelInTime;
-            FAIL -= RestartLevel;
+            FAIL -= StartLevel;
         }
     }
 }

@@ -374,6 +374,7 @@
 "Assets/Scripts/Game/PlatformSystem/PlatformTypes/FinalPlatform.cs"
 "Assets/Scripts/Game/PlatformSystem/PlatformTypes/NormalPlatform.cs"
 "Assets/Scripts/Game/PlatformSystem/PlatformTypes/Platform.cs"
+"Assets/Scripts/Management/UIManager.cs"
 "Assets/Scripts/Managers/AssetManager.cs"
 "Assets/Scripts/Managers/GameManager.cs"
 "Assets/Scripts/Managers/Level/LevelData.cs"
